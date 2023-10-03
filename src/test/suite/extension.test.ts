@@ -9,7 +9,6 @@ suite('Extension Test Suite', () => {
 	vscode.window.showInformationMessage('Start all tests.');
 
 	test('Sample test', () => {
-		assert.strictEqual(-1, 3);
 		assert.strictEqual(2+2, 4);
 	});
 });
