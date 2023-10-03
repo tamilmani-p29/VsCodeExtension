@@ -1,0 +1,25 @@
+yaml
+name: Test VsCodeExtension Sample
+on:
+  push: 
+    branches:
+      - main
+      - test
+
+jobs:
+  build: 
+    strategy:
+      os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+    - run: npm install
+    - run: xvfb-run -a npm test
+      if: runner.os == 'Linux'
+    - run: npm test
+      if: runner.os != 'Linux'
